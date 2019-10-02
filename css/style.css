@@ -1,0 +1,41 @@
+* {
+  transition-duration: .5s !important;
+}
+section {
+  width: 100vw;
+  height: 100vh;
+  background-color:rgb(117, 245, 6);
+  background-image: url(/img/qm.png);
+  background-size:  15rem;
+  background-repeat: repeat;
+}
+
+#gamecontainer {
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.8)
+  
+}
+
+#numInput {
+  border-color: green;
+  border-radius: 20px;
+  height : 3rem;
+  width : 30rem;
+}
+
+#refresh:hover {
+  -ms-transform: rotate(270deg);
+  -webkit-transform: rotate(270deg);
+  transform: rotate(270deg);
+  transition-duration: 3s;
+}
+
+#refresh:active {
+  transform: translateX(5px);
+  transform: translateY(5px);
+  transition-duration: .3s;
+}
+
+.alertArea {
+  height: 3rem;
+}
