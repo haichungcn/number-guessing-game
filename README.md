@@ -1,10 +1,10 @@
-# CoderSchool FTW - * Name of Your Project Here *
+# CoderSchool FTW - * NUMBER GUESSING GAME (MYSTERY NUMBER) *
 
-Created with love by: `Your Name Here`
+Created with love by: `Hai Chung`
   
-View online at: `Your URL here`
+View online at: `https://jolly-engelbart-fdb237.netlify.com`
   
-One or two sentence summary of your project. 
+A web game let users guess a random number between 1-100 
 
 ## Video Walkthrough
 
@@ -18,22 +18,23 @@ To create a GIF, use [LiceCap](http://www.cockos.com/licecap/), [RecordIt](http:
 
 ## User Stories
 
-The following **required** functionalities are completed (this is a sample):
+The following required functionalities are completed (this is a sample):
 
-* [x] Top navigation bar with dropdown buttons
-* [x] Banner with background image, white text, and a green button
-* [x] Color or text change when mouse hovers over
-* [x] At least 3 different body sections with different background images or colors
-* [x] 2 (or 3) card items per row in a body section
-* [x] Footer with social icons that link to the actual social pages
+* [v] The user can attempt to guess a random integer between 1 and 100 by entering a value into a textbox.
+* [v] The user can press a button to check their guess, and receive feedback on whether their guess was too low, too high, or correct.
+* [v] After the user enters a guess, the textbox is cleared.
+* [v] The user sees feedback about the most recent guess in a Bootstrap alert class div. If the guess is correct, the user will see a div styled with the "success" background.
+* [v] The user is limited to ten guesses to guess the correct number, and can see the number of remaining guesses after each incorrect guess via a "Guesses Remaining" area.
+* [v] The user can restart the game by pressing a "start over" button or link.*
 
-The following **optional** features are implemented:
+The following optional features are implemented:
 
-* [x] Add favicon to the page
-* [ ] Animation on an element
-* [ ] Navigation, contact, sitemap, privacy policy, term of use, etc in footer
-* [ ] Bootstrap carousel for banner
-* [ ] Banner with background video
+* [v] The user can see a history of past guesses.
+* [v] When the user guesses the same number twice, the user receives an error message alerting them to the fact that they've already guessed that number. The number of guesses remaining should not decrease.
+* [ ] The user can play multiple rounds of the game, and see results about previous rounds on the screen.
+* [v] The user can see their best score of the session. Best score is defined as the round that took the fewest guesses to arrive at the correct number.
+* [v] The user can see how long it took to finish each round in seconds.
+* [v] The user is limited to 30 seconds per guess. If the user does not guess within the allotted time, the turn is lost.
 
 The following **additional** features are implemented:
 
@@ -41,13 +42,13 @@ The following **additional** features are implemented:
 
 ## Time Spent and Lessons Learned
 
-Time spent: **X** hours spent in total.
+Time spent: 9 hours spent in total.
 
 Describe any challenges encountered while building the app.
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2019] [Hai Chung]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

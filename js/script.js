@@ -5,6 +5,7 @@ let time = 0;
 let myTime;
 let name;
 let highscore = {};
+let gamePlayed = {};
 
 const guessTimesDisplayArea = document.getElementById("times");
 const alertArea = document.getElementById("alertArea");
@@ -63,12 +64,15 @@ function makeGuess() {
         stopTimer()
         button.classList.add("invisible");
         name = prompt('Please enter your name:');
+        let timeTaken = 30 - time;
+        let guessTaken = 10 - guessTimes;
         if (Object.keys(highscore).includes(name)) {
-          if ((highscore[name]['time_play'] <= (30-time)) || (highscore[name]['guesses_taken'] <= (10-guessTimes))) {
-            prompt('You already have a higher score');
+          if ((highscore[name]['time_play'] < timeTaken) || (highscore[name]['guesses_taken'] < guessTaken)) {
+            highscore[name] = {'time_play' : timeTaken,'guesses_taken': guessTaken};
+            prompt(`Congratulation! You are the best with ${guessTaken} guesses taken in ${timeTaken} seconds.`);
           }
         } else {
-          highscore[name] = {'time_play' : (30 - time),'guesses_taken': (10 - guessTimes)};
+          prompt('You already have a higher score');
         }
         guessTimes = 1;
       };
