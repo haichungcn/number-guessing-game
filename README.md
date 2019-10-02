@@ -31,14 +31,17 @@ The following optional features are implemented:
 
 * [v] The user can see a history of past guesses.
 * [v] When the user guesses the same number twice, the user receives an error message alerting them to the fact that they've already guessed that number. The number of guesses remaining should not decrease.
-* [ ] The user can play multiple rounds of the game, and see results about previous rounds on the screen.
+* [v] The user can play multiple rounds of the game, and see results about previous rounds on the screen.
 * [v] The user can see their best score of the session. Best score is defined as the round that took the fewest guesses to arrive at the correct number.
 * [v] The user can see how long it took to finish each round in seconds.
 * [v] The user is limited to 30 seconds per guess. If the user does not guess within the allotted time, the turn is lost.
 
 The following **additional** features are implemented:
 
-* [x] List anything else that you can get done to improve the page!
+* [x] Have a pop-up dialog to welcome, explain and let user manually start the game.
+* [x] Have some pop-overs/tool-tips to explain each feature on the screen.
+* [x] Animation when hover and click on restart game icon.
+
 
 ## Time Spent and Lessons Learned
 

@@ -39,3 +39,10 @@ section {
 .alertArea {
   height: 3rem;
 }
+
+.btn-submenu {
+  background-color: rgba(255, 255, 255, 0.8);
+  width: 8rem;
+  height: 2rem;
+  font-size: .8rem;
+}
