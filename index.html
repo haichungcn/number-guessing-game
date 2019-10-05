@@ -1,124 +1,273 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
 
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.11.2/css/v4-shims.css"
+        />
+        <link
+            href="https://fonts.googleapis.com/css?family=Mansalva&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/style.css" />
+        <title>Mystery Number | The Game</title>
+    </head>
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/v4-shims.css">
-    <link rel="stylesheet" href="css/style.css">
-  <title>Mystery Number | The Game</title>
-</head>
+    <body onload="initializeProgram()">
+        <section
+            class="container-fluid d-flex justify-content-center align-items-center"
+        >
+            <div
+                id="gamecontainer"
+                class="container d-flex flex-column pt-5 pb-2 mx-0 border border-danger shadow-lg"
+            >
+                <div class="row px-1 px-sm-5 py-2 bg-success shadow">
+                    <div class="col-2 p-0 align-middle">
+                        <h5 class="text-center text-light m-0">Time:</h5>
+                        <h2 class="display-sm-5 text-center m-0">
+                            <span
+                                id="time"
+                                class="badge badge-pill badge-danger border shadow"
+                                datacontainer="body"
+                                data-toggle="popover"
+                                data-placement="bottom"
+                                data-trigger="hover"
+                                data-content="You have 30 seconds to finish the game"
+                                >0</span
+                            >
+                        </h2>
+                    </div>
 
-<body onload="initializeProgram()">
-  <section class="container-fluid d-flex justify-content-center align-items-center">
-    <div id="gamecontainer" class="container d-flex flex-column pt-5 pb-2 mx-0 border border-danger shadow-lg">
-      <div class="row px-1 px-sm-5 py-2 bg-success shadow">
-        <div class="col-2 p-0 align-middle">
-          <h3 class="text-center text-light m-0">Time:</h3>
-          <h2 class="display-sm-5 text-center m-0"><span id="time" class="badge badge-pill badge-danger border shadow" datacontainer="body" data-toggle="popover" data-placement="bottom" data-trigger="hover" data-content="You have 30 seconds to finish the game" >0</span></h2>
+                    <h1
+                        class="col-8 display-sm-4 text-light text-uppercase text-center text-bold p-1 p-sm-3  align-middle"
+                    >
+                        Mystery Number
+                    </h1>
+
+                    <div class="col-2 p-0 align-middle">
+                        <h5 class="text-center text-light m-0">
+                            Turns:
+                        </h5>
+                        <h2 class="display-sm-5 text-center m-0">
+                            <span
+                                id="times"
+                                class="badge badge-pill badge-danger border shadow"
+                                datacontainer="body"
+                                data-toggle="popover"
+                                data-placement="bottom"
+                                data-trigger="hover"
+                                data-content="You have 10 turns to play"
+                                >10</span
+                            >
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="row flex-column align-items-center mb-3 mt-4">
+                    <div class="col-10 text-center m-2">
+                        <h5 class="h5 mt-1 m-0 p-0 text-bold">
+                            What number am I thinking of ? (hint: between 1 to
+                            100)
+                        </h5>
+                        <p id="userGuesses" class="text-success"></p>
+                    </div>
+                    <div
+                        class="col-8 col-sm-6 d-flex justify-content-center p-0"
+                    >
+                        <input
+                            id="numInput"
+                            autofocus
+                            type="number"
+                            class="form-control shadow-sm my-2 text-center m-0"
+                            placeholder="Pls guess by entering a number"
+                            datacontainer="body"
+                            data-toggle="popover"
+                            data-placement="left"
+                            data-trigger="hover"
+                            data-content='Enter a number from 1-100 then press "Make A Guess" button, you will have 10 turns within 30 seconds'
+                        />
+                    </div>
+                </div>
+
+                <div class="row flex-column align-items-center alertArea">
+                    <p id="alertArea" class="h3 text-danger text-bold"></p>
+                </div>
+                <div class="row justify-content-center">
+                    <button
+                        id="button"
+                        onclick="makeGuess()"
+                        class="col-5 col-sm-3 btn btn-success my-3 mx-5 shadow-sm rounded"
+                    >
+                        MAKE A GUESS
+                    </button>
+                </div>
+
+                <div class="row mt-2 mb-3 pt-3 mb-sm-1">
+                    <div class="col-1"></div>
+                    <small
+                        class="col-12 col-sm-10 text-center align-text-bottom"
+                        >© Hai Chung 2019<br />
+                        <a class="link" href="https//www.github.com/haichungcn/"
+                            >Github</a
+                        ></small
+                    >
+                    <div class="col-1"></div>
+                </div>
+
+                <div class="row d-flex flex-row pb-1 px-1">
+                    <div
+                        class="col-sm-4 col-12 text-center text-sm-left align-center align-sm-start"
+                    >
+                        <button
+                            class="btn btn-outline-info shadow-sm rounded btn-submenu"
+                            data-toggle="modal"
+                            data-target="#infoModal"
+                            onclick="displayGames()"
+                        >
+                            Game history
+                        </button>
+                        <button
+                            class="btn btn-outline-warning shadow-sm rounded btn-submenu"
+                            data-toggle="modal"
+                            data-target="#infoModal"
+                            onclick="displayHighScores()"
+                        >
+                            Highscores
+                        </button>
+                    </div>
+                    <div class="col-md-4 col-3"></div>
+                    <div class="col-3"></div>
+                    <div
+                        class="col-1 mt-3 mt-md-0 d-flex flex-row align-items-center justify-content-end"
+                    >
+                        <i
+                            id="refresh"
+                            class="fas fa-sync fa-3x text-success"
+                            datacontainer="body"
+                            data-toggle="popover"
+                            data-placement="bottom"
+                            data-trigger="hover"
+                            data-content="Click to start a new game"
+                            onclick="runProgram()"
+                        ></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Button trigger modal -->
+        <button
+            id="modalButton"
+            type="button"
+            class="btn btn-primary invisible p-0 m-0"
+            data-toggle="modal"
+            data-target="#infoModal"
+        >
+            Launch
+        </button>
+        <!-- Modal -->
+        <div
+            class="modal fade bd-modal-lg"
+            id="infoModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="info"
+            aria-hidden="true"
+        >
+            <div
+                class="modal-dialog modal-lg modal-dialog-center"
+                role="document"
+            >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalTitle">Hi there!</h5>
+                        <button
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                        >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="modalContent" class="h5 text-danger text-center">
+                            Just a shout out to Hai Chung.
+                        </p>
+                    </div>
+                    <div class="modal-footer row justify-content-center">
+                        <button
+                            id="buttonOk"
+                            type="button"
+                            class="btn btn-primary"
+                            onclick="runProgram()"
+                            data-dismiss="modal"
+                        >
+                            Play again
+                        </button>
+                        <button
+                            id="buttonClose"
+                            type="button"
+                            class="btn btn-secondary"
+                            data-dismiss="modal"
+                        >
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <h1 class="col-8 display-sm-4 text-light text-uppercase text-center text-bold p-1 p-sm-3  align-middle">Mystery Number</h1>
+        <!-- Optional JavaScript -->
+        <script src="js/script.js"></script>
+        <script
+            defer
+            src="https://use.fontawesome.com/releases/v5.11.2/js/all.js"
+        ></script>
+        <script
+            defer
+            src="https://use.fontawesome.com/releases/v5.11.2/js/v4-shims.js"
+        ></script>
 
-        <div class="col-2 p-0 align-middle">
-          <h3 class="text-center text-light m-0">Turns:</h3>
-          <h2 class="display-sm-5 text-center m-0"><span id="times" class="badge badge-pill badge-danger border shadow" datacontainer="body" data-toggle="popover" data-placement="bottom" data-trigger="hover" data-content="You have 10 turns to play">10</span></h2>
-        </div>
-      </div>
-
-      <div class="row flex-column align-items-center mb-3 mt-4">
-        <div class="col-10 text-center m-2">
-          <h5 class="h5 mt-1 m-0 p-0 text-bold">What number am I thinking of ? (hint: between 1 to 100)</h5>
-          <p id="userGuesses" class="text-success"></p>
-        </div>
-        <div class="col-8 col-sm-6 d-flex justify-content-center p-0">
-          <input id="numInput" autofocus type="number" class="form-control shadow-sm my-2 text-center m-0"
-            placeholder="Pls guess by entering a number" datacontainer="body" data-toggle="popover" data-placement="left" data-trigger="hover" data-content='Enter a number from 1-100 then press "Make A Guess" button, you will have 10 turns within 30 seconds' >
-        </div>
-      </div>
-
-      <div class="row flex-column align-items-center alertArea">
-        <p id="alertArea" class="h3 text-danger text-bold"></p>
-      </div>
-      <div class="row justify-content-center">
-        <button id="button" onclick="makeGuess()" class="col-5 col-sm-3 btn btn-success my-3 mx-5 shadow-sm rounded">MAKE A GUESS</button>
-      </div>
-
-      <div class="row mt-2 mb-1 pt-3">
-        <div class="col-1">
-        </div>
-        <small class="col-6 col-sm-10 text-center align-text-bottom">© Hai Chung 2019<br>
-        <a class="link" href="https//www.github.com/haichungcn/">Github</a></small>
-        <div class="col-1">
-        </div>
-      </div>
-      
-      <div class="row d-flex flex-row pb-1 px-1">
-        <div class="col-4">
-            <button class="btn btn-outline-info shadow-sm rounded btn-submenu my-2" data-toggle="modal" data-target="#infoModal" onclick="displayGames()">Game history</button>
-            <button class="btn btn-outline-warning shadow-sm rounded btn-submenu" data-toggle="modal" data-target="#infoModal" onclick="displayHighScores()">Highscores</button>
-        </div>
-        <div class="col-4"></div>    
-        <div class="col-3"></div>    
-        <div class="col-1 d-flex flex-row align-items-center justify-content-end">
-            <i id="refresh" class="fas fa-sync fa-3x text-success" datacontainer="body" data-toggle="popover" data-placement="bottom" data-trigger="hover" data-content="Click to start a new game" onclick="runProgram()"></i>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- Button trigger modal -->
-  <button id="modalButton" type="button" class="btn btn-primary invisible p-0 m-0" data-toggle="modal" data-target="#infoModal">
-      Launch
-  </button>
-  <!-- Modal -->
-  <div class="modal fade bd-modal-lg" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="info" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalTitle">Hi there!</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p id="modalContent" class="h5 text-danger text-center">Just a shout out to Hai Chung.</p>
-        </div>
-        <div class="modal-footer">
-          <button id="buttonClose" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button id="buttonOk" type="button" class="btn btn-primary" onclick="runProgram()" data-dismiss="modal">Play again</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Optional JavaScript -->
-  <script src="js/script.js"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.11.2/js/all.js"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.11.2/js/v4-shims.js"></script>
-
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
-  <script>
-    $(document).ready(function(){
-      $('[data-toggle="popover"]').popover();
-    });
-    $('#refresh').popover();
-    $('#refresh').popover({ trigger: "hover" });
-  </script>
-</body>
-
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script
+            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"
+        ></script>
+        <script>
+            $(document).ready(function() {
+                $('[data-toggle="popover"]').popover();
+            });
+            $("#refresh").popover();
+            $("#refresh").popover({ trigger: "hover" });
+        </script>
+    </body>
 </html>
